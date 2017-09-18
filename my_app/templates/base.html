@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <title>Lights Out Tool</title>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</head>
+<body>
+<div id="loading">
+    {#<img id="loading-image" src="{{ url_for('static',filename='images/oracle.gif') }}" alt="Loading...">#}
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url_for('login') }}"><img
+                        src="{{ url_for('static',filename='images/oracle.gif') }}" alt="Oracle"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a class="navbar-brand" href="{{ url_for('login') }}">FinTech Trigger
+                        Lightsout</a></li>
+                    {% block navbar %}
+                    {% endblock %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        {% block container %}
+        {% endblock %}
+    </div>
+    <footer class="fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="copyright">
+                        © 2017, A Product of FinTech Automation Team, All rights reserved
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="design">
+                        <b>Contact <a target="_blank" href="mailto:sasasriv_org_ww@oracle.com">Sandeep Kant
+                            Shrivastava</a>
+                            for any assistance</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

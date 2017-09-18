@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+{% block container %}
+    <div class="container">
+        <form method="post" action="{{ url_for('register') }}" role="form" class="form-signin">
+            {{ form.csrf_token }}
+            <h2 class="form-signin-heading">Please register</h2>
+            <div class="form-group>">
+                {{ form.username.label(class="sr-only") }}
+                {{ form.username(placeholder="Enter your username", class="form-control", required="") }}
+                <span class="help-block"> </span>
+            </div>
+            <div class="form-group">
+                {{ form.password.label(class="sr-only") }}
+                {{ form.password(placeholder="Password", class="form-control") }}
+                <span class="help-block"> </span>
+            </div>
+            <div class="form-group">
+                {{ form.confirm.label(class="sr-only") }}
+                {{ form.confirm(placeholder="Confirm Password",class="form-control") }}
+                <span class="help-block"> </span>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+{% endblock %}

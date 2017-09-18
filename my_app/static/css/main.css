@@ -1,0 +1,124 @@
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.navbar-brand {
+    padding: 10px;
+}
+
+.navbar-brand > img {
+    width: auto;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.top-pad {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.form-group .select {
+    max-width: 200px;
+}
+
+.form-group .select span.text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+footer {
+    background-color: black;
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}
+
+.copyright {
+    color: #ffffff;
+    line-height: 30px;
+    min-height: 30px;
+    padding: 7px 0;
+}
+
+.design {
+    color: #ffffff;
+    line-height: 30px;
+    min-height: 30px;
+    padding: 7px 0;
+    text-align: right;
+}
+
+.design a {
+    color: #ffffff;
+}
+
+.buttonload {
+    background-color: #ffffff; /* White background */
+    border: none; /* Remove borders */
+    color: black; /* Black text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    width: 505px;
+}
+
+/*#loading {*/
+/*width: 100%;*/
+/*height: 100%;*/
+/*top: 0;*/
+/*left: 0;*/
+/*position: fixed;*/
+/*display: block;*/
+/*opacity: 0.7;*/
+/*background-color: #fff;*/
+/*z-index: 99;*/
+/*text-align: center;*/
+/*}*/
+
+/*#loading-image {*/
+/*position: absolute;*/
+/*top: 100px;*/
+/*left: 240px;*/
+/*z-index: 100;*/
+/*}*/

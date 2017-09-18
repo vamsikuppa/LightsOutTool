@@ -1,0 +1,91 @@
+{% extends "home.html" %}
+{% block tool %}
+    <form action="/trigger/output" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <label for="labelText"><b><br>Please select the Run Name to select FAAT Label. Use 'Trigger' to start a
+            new Lightsout
+            Job</b><br><br></label>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-2">
+                    <label for="sel1">Run Name (select one):</label>
+                    <select required id="runName" name="runName" class="form-control" style="width: 505px">
+                        <option value="" selected disabled>Please select</option>
+                        {% for id, env in envlabels.iteritems() %}
+                            <option value= {{ env['envName'] }}>{{ env['envName'] }}</option>
+                        {% endfor %}
+                    </select><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <label for="faatLabel">FAAT Label</label>
+                    <button class="buttonload" id="loadingButton" style="display: none" disabled>
+                        <i class="fa fa-spinner fa-spin"></i>Loading FAAT Labels
+                    </button>
+                    <select required id="faatlabel" name="faatlabel" class="form-control" style="width: 505px"
+                            disabled>
+                        <option value="">Select a Run Name</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-2">
+                    <label for="sel1">FAINTEG Label:</label>
+                    <select required id="faintteg" name="faintteg" class="form-control" style="width: 505px">
+                        <option value="" selected disabled>Please select</option>
+                        {% for fainteg in fainteglabels | reverse %}
+                            <option value= {{ fainteg }}>{{ fainteg }}</option>
+                        {% endfor %}
+                    </select><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Trigger</button>
+                </div>
+            </div>
+        </div>
+        <br>
+    </form>
+    <script charset="utf-8" type="text/javascript">
+        $(function () {
+            var dropdown = {
+                runname: $('#runName'),
+                faatlabel: $('#faatlabel')
+            };
+
+            //function to call XHR Request and populate the faat label dropdown
+            function updateFaatLabelDropdown() {
+                var runName = dropdown.runname.val();
+                dropdown.faatlabel.hide();
+                $('#loadingButton').show();
+                dropdown.faatlabel.attr('disabled', 'disabled');
+                //console.log(runName);
+                if (runName.toString() != '') {
+                    dropdown.faatlabel.empty();
+                    $.getJSON("{{ url_for('get_faat_labels') }}", {runName: runName}, function (data) {
+                        console.log(data); // This is working :)
+                        data.reverse().forEach(function (item) {
+                            dropdown.faatlabel.append(
+                                $('<option>', {
+                                    value: item,
+                                    text: item
+                                })
+                            );
+                        });
+                        $('#loadingButton').hide();
+                        dropdown.faatlabel.removeAttr('disabled');
+                        dropdown.faatlabel.show();
+                    });
+                }
+            }
+
+            // event listener to run name dropdown change
+            dropdown.runname.on('change', function () {
+                updateFaatLabelDropdown();
+            });
+        });
+    </script>
+{% endblock %}
