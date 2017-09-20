@@ -1,13 +1,18 @@
 {% extends "base.html" %}
+{% block navbar %}
+
+    <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+{#            <li><p class="navbar-brand text-bold text-white">Welcome {{ current_user.username }}</p></li>#}
+            <li><a class="navbar-brand text-bold text-white" href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+            <li><a class="navbar-brand text-bold text-white" href="{{ url_for('login') }}">Login</a></li>
+            <li><a class="navbar-brand text-bold text-white" href="{{ url_for('register') }}">Register</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}
 {% block container %}
-    <h1>Lights Out Tool</h1>
-    {% if current_user.is_authenticated %}
-        <h3>Welcome {{ current_user.username }}</h3>
-        <a href="{{ url_for('logout') }}">Click here to logout</a>
-        {% block tool %}
-        {% endblock %}
-    {% else %}
-        Click here to <a href="{{ url_for('login') }}">login</a> or
-        <a href="{{ url_for('register') }}">register</a>
-    {% endif %}
+    <h2>Welcome to FinTech Lightsout Tool</h2>
+    {% block tool %}
+    {% endblock %}
 {% endblock %}

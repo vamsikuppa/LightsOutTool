@@ -42,6 +42,14 @@
     padding: 10px;
 }
 
+.text-bold {
+    font-weight: 600 !important
+}
+
+.text-white {
+    color: #ffffff;
+}
+
 .navbar-brand > img {
     width: auto;
 }

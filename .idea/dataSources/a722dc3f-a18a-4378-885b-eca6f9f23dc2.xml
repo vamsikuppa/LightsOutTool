@@ -8,111 +8,110 @@
     </schema>
     <schema id="3" parent="1" name="bugdb"/>
     <schema id="4" parent="1" name="information_schema"/>
-    <schema id="5" parent="1" name="lightsoutdb"/>
-    <schema id="6" parent="1" name="mysql"/>
-    <schema id="7" parent="1" name="performance_schema"/>
-    <schema id="8" parent="1" name="rpthead"/>
-    <schema id="9" parent="1" name="sys"/>
-    <schema id="10" parent="1" name="test"/>
-    <table id="11" parent="2" name="alembic_version"/>
-    <table id="12" parent="2" name="centralenvs"/>
-    <table id="13" parent="2" name="env_labels"/>
-    <table id="14" parent="2" name="faat_labels"/>
-    <table id="15" parent="2" name="user"/>
-    <column id="16" parent="11" name="version_num">
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
+    <schema id="7" parent="1" name="rpthead"/>
+    <schema id="8" parent="1" name="sys"/>
+    <schema id="9" parent="1" name="test"/>
+    <table id="10" parent="2" name="alembic_version"/>
+    <table id="11" parent="2" name="centralenvs"/>
+    <table id="12" parent="2" name="env_labels"/>
+    <table id="13" parent="2" name="faat_labels"/>
+    <table id="14" parent="2" name="user"/>
+    <column id="15" parent="10" name="version_num">
       <Position>1</Position>
       <DataType>varchar(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="17" parent="11" name="PRIMARY">
+    <key id="16" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version_num</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="18" parent="12" name="id">
+    <column id="17" parent="11" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="19" parent="12" name="envLabel">
+    <column id="18" parent="11" name="envLabel">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="20" parent="12" name="envName">
+    <column id="19" parent="11" name="envName">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="21" parent="12" name="orderProp">
+    <column id="20" parent="11" name="orderProp">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="22" parent="12" name="provFile">
+    <column id="21" parent="11" name="provFile">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="23" parent="12" name="PRIMARY">
+    <key id="22" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="24" parent="13" name="id">
+    <column id="23" parent="12" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="25" parent="13" name="envLabel">
+    <column id="24" parent="12" name="envLabel">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="26" parent="13" name="envName">
+    <column id="25" parent="12" name="envName">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="27" parent="13" name="orderProp">
+    <column id="26" parent="12" name="orderProp">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="28" parent="13" name="provFile">
+    <column id="27" parent="12" name="provFile">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="29" parent="13" name="PRIMARY">
+    <key id="28" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="30" parent="14" name="id">
+    <column id="29" parent="13" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="31" parent="14" name="faatLabel">
+    <column id="30" parent="13" name="faatLabel">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="32" parent="14" name="PRIMARY">
+    <key id="31" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="33" parent="15" name="id">
+    <column id="32" parent="14" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="34" parent="15" name="username">
+    <column id="33" parent="14" name="username">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="35" parent="15" name="pwdhash">
+    <column id="34" parent="14" name="pwdhash">
       <Position>3</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <key id="36" parent="15" name="PRIMARY">
+    <key id="35" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
