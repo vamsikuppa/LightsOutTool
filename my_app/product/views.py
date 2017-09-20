@@ -3,6 +3,8 @@ from flask import g, render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from my_app.product.models import User, LoginForm, RegistrationForm, envLabels
 from paramiko import client
+from paramiko.client import SSHException
+import socket
 import re
 import json
 from werkzeug import abort
@@ -59,7 +61,7 @@ def login():
             flash('Username or password is not valid', 'error')
             return render_template('login.html', form=form)
         login_user(registereduser)
-        flash('Logged in successfully', 'success')
+        #flash('Logged in successfully', 'success')
         return redirect(url_for('trigger'))
     return render_template('login.html', form=form)
 
@@ -76,9 +78,10 @@ def trigger():
             'provFile': envlabel.provFile
         }
     global Client
-    Client = connect_ssh("slc10xkv.us.oracle.com", "atangudu", "1989@nudeeP")
-    if not Client:
-        abort(500)  # Internal Server Error
+    try:
+        Client = connect_ssh("slc10xkv.us.oracle.com", "atangudu", "1989@nudeeP")
+    except (SSHException, socket.error) as e:
+        return render_template('error.html', error=e)
     command = "ade showlabels -series FAINTEG_MAIN_PLATFORMS | tail -10"
     fainteglabels = []
     stdin, stdout, stderr = Client.exec_command(command)
@@ -131,11 +134,24 @@ def get_faat_labels():
     jsondata = json.dumps(commandOutput, indent=4, ensure_ascii=False)
     return jsondata
 
+
+@app.route('/get_env_labels/')
+def get_env_labels():
+    runName = request.args.get('runName').encode('utf-8')
+    query_string = "SELECT envLabel FROM env_labels WHERE envName='{}'".format(runName.encode('utf-8'))
+    result = db.engine.execute(query_string)
+    envResult = result.fetchall()
+    for row in envResult:
+        envRow = row[0].encode('utf-8')
+    jsondata = json.dumps(envRow, indent=4, ensure_ascii=False)
+    return jsondata
+
+
 @app.route('/trigger/output', methods=['POST'])
 def output():
     selectOption = request.form.get('runName')
     faatLabel = request.form.get('faatlabel')
-    faintteg=request.form.get('faintteg')
+    faintteg = request.form.get('faintteg')
     query_string = "SELECT orderProp,provFile FROM env_labels WHERE envName='{}'".format(selectOption.encode('utf-8'))
     result = db.engine.execute(query_string)
     envResult = result.fetchall()
@@ -148,7 +164,7 @@ def output():
               "PILLAR_TYPE=FSCM RunFaBATS:CMDOPTIONS='-parallel IS_ALM=true FA_TEMPLATE=%FA_TEMPLATE% " \
               "FAAT_LABEL={} " \
               "ORDER_INPUTFILE={}' " \
-              "PROVISIONING_PLAN={} REE_PARAM=""OSPlayabackBrowser=Firefox""".format(faintteg,faatLabel, envOrderProp,
+              "PROVISIONING_PLAN={} REE_PARAM=""OSPlayabackBrowser=Firefox""".format(faintteg, faatLabel, envOrderProp,
                                                                                      envProvFile)
     stdin, stdout, stderr = Client.exec_command(command)
     while not stdout.channel.exit_status_ready():
@@ -163,6 +179,7 @@ def output():
     dteId = refactor_commandOutput(commandOutput)
     return render_template("output.html", commandOutput=dteId)
 
+
 def refactor_commandOutput(commandOutput):
     dteidMatch = re.search(r'\d{8} : SMC_LIGHTS_OUT_BATS', commandOutput, re.MULTILINE)  # PERL compatible
     dteId = re.search(r'\d{8}', dteidMatch.group(0))
@@ -176,6 +193,7 @@ def connect_ssh(hostname, username, password):  # store credentials it in db
     if not Client:
         abort(404)
     return Client
+
 
 
 @app.route('/logout')
