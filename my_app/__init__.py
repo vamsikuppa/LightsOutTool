@@ -9,7 +9,7 @@ app = Flask(__name__)
 #csrf = CSRFProtect(app)
 #app.secret_key = 'oracle'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/lightsouttool'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/lightsouttool'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 manager = Manager(app)
