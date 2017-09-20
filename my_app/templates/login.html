@@ -3,7 +3,7 @@
     <div class="container">
         <form method="post" action="{{ url_for('login') }}" role="form" class="form-signin">
             {{ form.csrf_token }}
-            <h2 class="form-signin-heading">Please sign in</h2>
+            <h2 class="form-signin-heading">Please Sign In</h2>
             {{ form.username.label(class="sr-only") }}
             {{ form.username(placeholder="Username", class="form-control", required="") }}
             <span class="help-block">

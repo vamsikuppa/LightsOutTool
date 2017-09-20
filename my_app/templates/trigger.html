@@ -7,18 +7,21 @@
             Job</b><br><br></label>
         <div class="form-group">
             <div class="row">
-                <div class="col-xs-2">
+                <div class="col-md-6">
                     <label for="sel1">Run Name (select one):</label>
                     <select required id="runName" name="runName" class="form-control" style="width: 505px">
                         <option value="" selected disabled>Please select</option>
                         {% for id, env in envlabels.iteritems() %}
                             <option value= {{ env['envName'] }}>{{ env['envName'] }}</option>
                         {% endfor %}
-                    </select><br>
+                    </select>
                 </div>
-            </div>
+                <div class="col-md-4">
+                    <span class="glyphicon glyphicon-info-sign" style="display: none;padding-top: 35px" id="envName"></span>
+                </div>
+            </div><br>
             <div class="row">
-                <div class="col-xs-2">
+                <div class="col-md-6">
                     <label for="faatLabel">FAAT Label</label>
                     <button class="buttonload" id="loadingButton" style="display: none" disabled>
                         <i class="fa fa-spinner fa-spin"></i>Loading FAAT Labels
@@ -31,7 +34,7 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-xs-2">
+                <div class="col-md-6">
                     <label for="sel1">FAINTEG Label:</label>
                     <select required id="faintteg" name="faintteg" class="form-control" style="width: 505px">
                         <option value="" selected disabled>Please select</option>
@@ -82,8 +85,19 @@
                 }
             }
 
+            function displayEnvLabel() {
+                var runName = dropdown.runname.val();
+                if (runName.toString() != '') {
+                    $.getJSON("{{ url_for('get_env_labels') }}", {runName: runName}, function (data) {
+                        $('#envName').text(data);
+                        $('#envName').show();
+                    });
+                }
+            }
+
             // event listener to run name dropdown change
             dropdown.runname.on('change', function () {
+                displayEnvLabel();
                 updateFaatLabelDropdown();
             });
         });
