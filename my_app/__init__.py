@@ -3,11 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 from flask_login import LoginManager
-#from flask_wtf.csrf import CSRFProtect
+
 
 app = Flask(__name__)
-#csrf = CSRFProtect(app)
-#app.secret_key = 'oracle'
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/lightsouttool'
 db = SQLAlchemy(app)

@@ -52,6 +52,7 @@
 
 .navbar-brand > img {
     width: auto;
+    padding-top: 7px;
 }
 
 body {

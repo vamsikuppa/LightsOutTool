@@ -104,7 +104,7 @@ def get_faat_labels():
     fincExp = re.compile(r'FINC')  # Exp for FINC
     findExp = re.compile(r'FIND')  # Exp for FIND
     if fincExp.search(str(runName)):
-        command = "ade showlabels -series FAAT_PT.V2MIBFINC_GENERIC | tail -4"
+        command = "ade showlabels -series FAAT_PT.V2MIBFINC_GENERIC | tail -10"
         commandOutput = []
         stdin, stdout, stderr = Client.exec_command(command)
         while not stdout.channel.exit_status_ready():
@@ -118,7 +118,7 @@ def get_faat_labels():
                 commandOutput = (str(alldata.encode("utf8")).split('\n'))
         commandOutput = filter(None, commandOutput)
     else:
-        command = "ade showlabels -series FAAT_PT.V2MIBFIND_GENERIC | tail -4"
+        command = "ade showlabels -series FAAT_PT.V2MIBFIND_GENERIC | tail -10"
         commandOutput = []
         stdin, stdout, stderr = Client.exec_command(command)
         while not stdout.channel.exit_status_ready():
