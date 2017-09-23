@@ -12,5 +12,5 @@ from flask_login import LoginManager
 csrf = CSRFProtect(app)
 #app.secret_key = 'oracle'
 #app.run(debug=True)
-app.config.from_object('config.DevelopmentConfig')
+# app.config.from_object('config.DevelopmentConfig')
 app.run()
