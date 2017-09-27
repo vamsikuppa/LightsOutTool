@@ -8,6 +8,7 @@ from flask_login import LoginManager
 app = Flask(__name__)
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/lightsouttool'
+app.config.from_object('config.DevelopmentConfig')
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 manager = Manager(app)

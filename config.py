@@ -25,3 +25,4 @@ class DevelopmentConfig(BaseConfig):
     TESTING = True
     # SECRET_KEY = 'Another random secret key'
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@localhost:3306/lightsouttool'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False

@@ -166,6 +166,7 @@ def output():
               "ORDER_INPUTFILE={}' " \
               "PROVISIONING_PLAN={} REE_PARAM=""OSPlayabackBrowser=Firefox""".format(faintteg, faatLabel, envOrderProp,
                                                                                      envProvFile)
+    print command
     stdin, stdout, stderr = Client.exec_command(command)
     while not stdout.channel.exit_status_ready():
         # Print data when available
