@@ -42,12 +42,14 @@ class envLabels(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     envLabel = db.Column(db.String(255))
     envName = db.Column(db.String(255))
+    envDisplayName = db.Column(db.String(255))
     orderProp = db.Column(db.String(255))
     provFile = db.Column(db.String(255))
 
-    def __init__(self, envLabel, envName, orderProp, provFile):
+    def __init__(self, envLabel, envName,envDisplayName, orderProp, provFile):
         self.envLabel = envLabel
         self.envName = envName
+        self.envDisplayName = envDisplayName
         self.orderProp = orderProp
         self.provFile = provFile
 

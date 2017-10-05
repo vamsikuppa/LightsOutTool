@@ -75,7 +75,8 @@ def trigger():
             'envLabel': envlabel.envLabel,
             'envName': envlabel.envName,
             'orderProp': envlabel.orderProp,
-            'provFile': envlabel.provFile
+            'provFile': envlabel.provFile,
+            'envDisplayName': envlabel.envDisplayName
         }
     global Client
     try:
