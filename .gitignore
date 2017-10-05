@@ -5,7 +5,6 @@ __pycache__/
 *$py.class
 
 .idea/*
-.idea/workspace.xml
 config.py
 # C extensions
 *.so
@@ -105,3 +104,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+/.gitignore

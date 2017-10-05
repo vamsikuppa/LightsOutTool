@@ -12,7 +12,7 @@
                     <select required id="runName" name="runName" class="form-control" style="width: 505px">
                         <option value="" selected disabled>Please select</option>
                         {% for id, env in envlabels.iteritems() %}
-                            <option value= {{ env['envName'] }}>{{ env['envName'] }}</option>
+                            <option value= {{ env['envName'] }}>{{ env['envDisplayName'] }}</option>
                         {% endfor %}
                     </select>
                 </div>
